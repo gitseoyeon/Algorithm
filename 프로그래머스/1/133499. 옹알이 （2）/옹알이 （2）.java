@@ -2,8 +2,6 @@ class Solution {
     public int solution(String[] babbling) {
         int answer = 0;
         int impo = 0;
-        String[] two = {"ye", "ma"};
-        String[] three = {"aya", "woo"};
 
         for (String s : babbling) {
             while (s.length() > 0) {
