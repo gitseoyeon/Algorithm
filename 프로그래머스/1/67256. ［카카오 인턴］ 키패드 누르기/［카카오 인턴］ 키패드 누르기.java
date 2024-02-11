@@ -3,8 +3,8 @@ class Solution {
         String answer = "";
         int left = 10;
         int right = 12;
-        int left_distance = 0;
-        int right_distance = 0;
+        int leftDis = 0;
+        int rightDis = 0;
         
         for(int n : numbers){
             if(n == 1 || n == 4 || n == 7){
@@ -17,13 +17,13 @@ class Solution {
                 if(n == 0){
                     n += 11;
                 }
-                left_distance = Math.abs(n - left) / 3 + Math.abs(n - left) % 3;
-                right_distance = Math.abs(n - right) / 3 + Math.abs(n - right) % 3;
+                leftDis = Math.abs(n - left) / 3 + Math.abs(n - left) % 3;
+                rightDis = Math.abs(n - right) / 3 + Math.abs(n - right) % 3;
                 
-                if(left_distance > right_distance){
+                if(leftDis > rightDis){
                     answer += "R";
                     right = n;
-                }else if(left_distance < right_distance){
+                }else if(leftDis < rightDis){
                     answer += "L";
                     left = n;
                 }else{
