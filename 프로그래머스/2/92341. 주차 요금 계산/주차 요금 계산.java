@@ -21,7 +21,7 @@ class Solution {
 
   
         for (List<Integer> times : recordMap.values()) {
-            if (times.size() % 2 == 1) {
+            if (times.size() % 2 != 0) {
                 times.add(23 * 60 + 59);
             }
         }
