@@ -14,13 +14,11 @@ class Solution {
         if(str[0].equals("0")){
             return answer = "0";
         }else{
-            answer += str[0];
+            for(int i = 0; i < str.length; i++){
+                answer += str[i];
+            }
         }
         
-        for(int i = 1; i < str.length; i++){
-            answer += str[i];
-        }
-
         return answer;
     }
 }
