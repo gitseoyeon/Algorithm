@@ -38,7 +38,7 @@ public class Main {
         Arrays.sort(arr, comparator);
 
         int[] prev = new int[] {arr[0][1], arr[0][2], arr[0][3]};
-        for(int i = 1; i < N; i++){
+        for(int i = 0; i < N; i++){
             if (Arrays.equals(arr[i], prev)) {
                 rank = i + 1; 
                 prev = new int[] {arr[i][1], arr[i][2], arr[i][3]};
