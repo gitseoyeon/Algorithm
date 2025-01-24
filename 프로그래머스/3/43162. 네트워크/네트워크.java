@@ -2,10 +2,9 @@ import java.util.*;
 
 class Solution {
     static int num;
-    static boolean[] visited;
-    static int answer;
+    static boolean[] visited;;
     public int solution(int n, int[][] computers) {
-        answer = 0;
+        int answer = 0;
         visited = new boolean[n];
         
         for(int i = 0; i < n; i++){
