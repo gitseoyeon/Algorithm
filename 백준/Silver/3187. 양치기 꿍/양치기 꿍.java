@@ -52,13 +52,10 @@ public class Main {
             if(nx >= 0 && nx < R && ny >= 0 && ny < C && !visited[nx][ny] && !arr[nx][ny].equals("#")){
                 if(arr[nx][ny].equals("v")){
                     wCnt++;
-                    dfs(nx, ny);
                 }else if(arr[nx][ny].equals("k")){
                     sCnt++;
-                    dfs(nx, ny);
-                }else{
-                    dfs(nx, ny);
                 }
+                dfs(nx, ny);
             }
         }
     }
