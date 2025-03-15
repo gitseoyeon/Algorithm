@@ -4,7 +4,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
@@ -17,16 +16,15 @@ public class Main {
 
         str = new StringTokenizer(br.readLine());
         int truth = Integer.parseInt(str.nextToken());
-        List<Integer> truthList = new ArrayList<>();
         ArrayList<HashSet<Integer>> graph = new ArrayList<>();
-        boolean[] checkTruth = new boolean[N + 1];
+        boolean[] knowTruth = new boolean[N + 1];
+        Queue<Integer> truthMem = new LinkedList<>();
 
         for (int i = 0; i < truth; i++) {
             int person = Integer.parseInt(str.nextToken());
-            truthList.add(person);
-            checkTruth[person] = true;
+            truthMem.add(person);
+            knowTruth[person] = true;
         }
-
         for (int i = 0; i < M; i++) {
             str = new StringTokenizer(br.readLine());
             int n = Integer.parseInt(str.nextToken());
@@ -37,40 +35,33 @@ public class Main {
             graph.add(hs);
         }
 
-        Queue<Integer> q = new LinkedList<>();
-        for (int t : truthList) {
-            q.add(t);
-        }
-
-        while (!q.isEmpty()) {
-            int current = q.poll();
+        while (!truthMem.isEmpty()) {
+            int current = truthMem.poll();
 
             for (HashSet<Integer> party : graph) {
                 if (party.contains(current)) {
                     for (int person : party) {
-                        if (!checkTruth[person]) {
-                            checkTruth[person] = true;
-                            q.add(person);
+                        if (!knowTruth[person]) {
+                            knowTruth[person] = true;
+                            truthMem.add(person);
                         }
                     }
                 }
             }
         }
 
-        int count = 0;
+        int cnt = 0;
         for (HashSet<Integer> party : graph) {
             boolean canLie = true;
             for (int person : party) {
-                if (checkTruth[person]) {
+                if (knowTruth[person]) {
                     canLie = false;
                     break;
                 }
             }
-            if (canLie) {
-                count++;
-            }
+            if (canLie) cnt++;
         }
 
-        System.out.println(count);
+        System.out.println(cnt);
     }
 }
