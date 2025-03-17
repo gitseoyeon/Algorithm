@@ -11,13 +11,13 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer str = new StringTokenizer(br.readLine());
-        int N = Integer.parseInt(str.nextToken());
-        int M = Integer.parseInt(str.nextToken());
+        int N = Integer.parseInt(str.nextToken()); // 사람 수
+        int M = Integer.parseInt(str.nextToken()); // 파티 수
 
         str = new StringTokenizer(br.readLine());
-        int truth = Integer.parseInt(str.nextToken());
-        ArrayList<HashSet<Integer>> graph = new ArrayList<>();
-        boolean[] knowTruth = new boolean[N + 1];
+        int truth = Integer.parseInt(str.nextToken()); // 진실을 아는 사람 수
+        ArrayList<ArrayList<Integer>> graph = new ArrayList<>(); // 파티 별 오는 사람 정보
+        boolean[] knowTruth = new boolean[N + 1]; // 진실 아는 사람 여부
         Queue<Integer> truthMem = new LinkedList<>();
 
         for (int i = 0; i < truth; i++) {
@@ -25,10 +25,11 @@ public class Main {
             truthMem.add(person);
             knowTruth[person] = true;
         }
+
         for (int i = 0; i < M; i++) {
             str = new StringTokenizer(br.readLine());
-            int n = Integer.parseInt(str.nextToken());
-            HashSet<Integer> hs = new HashSet<>();
+            int n = Integer.parseInt(str.nextToken()); // 파티 오는 사람 수
+            ArrayList<Integer> hs = new ArrayList<>(); // 파티 오는 사람
             for (int j = 0; j < n; j++) {
                 hs.add(Integer.parseInt(str.nextToken()));
             }
@@ -38,7 +39,7 @@ public class Main {
         while (!truthMem.isEmpty()) {
             int current = truthMem.poll();
 
-            for (HashSet<Integer> party : graph) {
+            for (ArrayList<Integer> party : graph) {
                 if (party.contains(current)) {
                     for (int person : party) {
                         if (!knowTruth[person]) {
@@ -51,7 +52,7 @@ public class Main {
         }
 
         int cnt = 0;
-        for (HashSet<Integer> party : graph) {
+        for (ArrayList<Integer> party : graph) {
             boolean canLie = true;
             for (int person : party) {
                 if (knowTruth[person]) {
