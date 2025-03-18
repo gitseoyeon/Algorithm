@@ -38,8 +38,7 @@ class Main {
 
         StringBuilder sb = new StringBuilder();
         for(int l : line){
-            sb.append(String.valueOf(l));
-            sb.append(" ");
+            sb.append(String.valueOf(l)).append(" ");
         }
         System.out.println(sb);
     }
