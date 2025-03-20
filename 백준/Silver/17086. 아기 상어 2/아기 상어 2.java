@@ -1,10 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
@@ -13,7 +10,7 @@ public class Main {
     static int[] dy = {0, 0, 1, -1, 1, -1, 1, -1};
     static int[][] arr;
     static boolean[][] visited;
-    static int N, M;
+    static int N, M, cnt;
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer str = new StringTokenizer(br.readLine());
@@ -21,7 +18,6 @@ public class Main {
         M = Integer.parseInt(str.nextToken());
         arr = new int[N][M];
         visited = new boolean[N][M];
-        List<Integer> cnt = new ArrayList<>();
         
 
         for(int i = 0; i < N; i ++){
@@ -35,12 +31,11 @@ public class Main {
             for(int j = 0; j < M; j++){
                 if(!visited[i][j] && arr[i][j] == 0){
                     visited[i][j] = true;
-                    cnt.add(bfs(i, j));
+                    cnt = Math.max(cnt, bfs(i, j));
                 }
             }
         }
-        Collections.sort(cnt, Collections.reverseOrder());
-        System.out.println(cnt.get(0));
+        System.out.println(cnt);
     }
 
     public static int bfs(int x, int y){
@@ -49,7 +44,6 @@ public class Main {
         Queue<int[]> queue = new LinkedList<>();
         queue.offer(new int[]{x, y});
         int[][] distance = new int[N][M];
-        distance[x][y] = 0;
 
         while(!queue.isEmpty()){
             int[] current = queue.poll();
