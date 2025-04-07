@@ -13,8 +13,9 @@ class Solution {
                 if (servers[i] < server) {
                     int diff = server - servers[i];
                     answer += diff;
-                    for (int j = 0; j < k && i + j < servers.length; j++) {
-                        servers[i + j] += diff;
+                    int endTime = Math.min(i + k, servers.length);
+                    for (int j = i; j < endTime; j++) {
+                        servers[j] += diff;
                     }
                 }
             }
