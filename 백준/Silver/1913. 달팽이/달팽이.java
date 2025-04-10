@@ -38,7 +38,7 @@ public class Main {
         int dir = 0;
         arr[x][y] = N * N;
 
-        while(dir < 4){
+        while(true){
             int nx = x + dx[dir];
             int ny = y + dy[dir];
 
@@ -48,10 +48,7 @@ public class Main {
                 x = nx;
                 y = ny;
             }else{
-                dir++;
-                if(dir >= 4){
-                    dir = 0;
-                }
+                dir = (dir + 1) % 4;
             }
         }
     }
