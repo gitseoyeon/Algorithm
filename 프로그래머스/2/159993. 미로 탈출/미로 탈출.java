@@ -25,45 +25,15 @@ class Solution {
             }
         }
         cnt = 0;
-        moveToLever();
+        move("L");
         
         if(cnt == 0) return -1;
         answer = cnt;
-        moveToExit();
+        move("E");
         return answer == cnt ? -1 : cnt;
     }
     
-    public static void moveToLever(){
-        Queue<int[]> queue = new LinkedList<>();
-        boolean[][] visited = new boolean[n][m];
-        queue.offer(start);
-        visited[start[0]][start[1]] = true;
-        int[][] dis = new int[n][m];
-        
-        while(!queue.isEmpty()){
-            int[] arr = queue.poll();
-            int x = arr[0];
-            int y = arr[1];
-            for(int i = 0; i < 4; i++){
-                int nx = dx[i] + x;
-                int ny = dy[i] + y;
-                if(nx < n && nx >= 0 && ny < m && ny >= 0){
-                    if(!visited[nx][ny] && !miro[nx][ny].equals("X")){
-                        if(miro[nx][ny].equals("L")){
-                            cnt += dis[x][y] + 1;
-                            start = new int[]{nx, ny};
-                            return;
-                        }
-                        visited[nx][ny] = true;
-                        queue.offer(new int[]{nx, ny});
-                        dis[nx][ny] = dis[x][y] + 1;
-                    }
-                }
-            }
-        } 
-    }
-    
-    public static void moveToExit(){
+    public static void move(String target){
         Queue<int[]> queue = new LinkedList<>();
         boolean[][] visited = new boolean[n][m];
         queue.offer(start);
@@ -80,7 +50,8 @@ class Solution {
                 int ny = dy[i] + y;
                 if(nx < n && nx >= 0 && ny < m && ny >= 0){
                     if(!visited[nx][ny] && !miro[nx][ny].equals("X")){
-                        if(miro[nx][ny].equals("E")){
+                        if(miro[nx][ny].equals(target)){
+                            if(target.equals("L")) start = new int[]{nx, ny};
                             cnt += dis[x][y] + 1;
                             return;
                         }
