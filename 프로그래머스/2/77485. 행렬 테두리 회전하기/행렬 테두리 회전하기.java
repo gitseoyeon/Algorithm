@@ -1,5 +1,3 @@
-import java.util.*;
-
 class Solution {
     static int[][] arr;
     public int[] solution(int rows, int columns, int[][] queries) {
@@ -28,35 +26,35 @@ class Solution {
         int endY = query[2];
         int endX = query[3];
 
-        int move = arr[startY][startX];
-        int min = move;
+        int cur = arr[startY][startX];
+        int min = cur;
 
         for(int i = startX + 1; i <= endX; i++){
-            int tmp = arr[startY][i];
-            arr[startY][i] = move;
-            min = Math.min(min, move);
-            move = tmp;
+            int next = arr[startY][i];
+            arr[startY][i] = cur;
+            min = Math.min(min, cur);
+            cur = next;
         }
 
         for(int i = startY + 1; i <= endY; i++){
-            int tmp = arr[i][endX];
-            arr[i][endX] = move;
-            min = Math.min(min, move);
-            move = tmp;
+            int next = arr[i][endX];
+            arr[i][endX] = cur;
+            min = Math.min(min, cur);
+            cur = next;
         }
         
         for(int i = endX - 1; i >= startX; i--){
-            int tmp = arr[endY][i];
-            arr[endY][i] = move;
-            min = Math.min(min, move);
-            move = tmp;
+            int next = arr[endY][i];
+            arr[endY][i] = cur;
+            min = Math.min(min, cur);
+            cur = next;
         }
 
         for(int i = endY - 1; i >= startY; i--){
-            int tmp = arr[i][startX];
-            arr[i][startX] = move;
-            min = Math.min(min, move);
-            move = tmp;
+            int next = arr[i][startX];
+            arr[i][startX] = cur;
+            min = Math.min(min, cur);
+            cur = next;
         }
 
         return min;
