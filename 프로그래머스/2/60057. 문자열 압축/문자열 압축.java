@@ -19,10 +19,10 @@ class Solution {
                 } else {
                     if(cnt > 1) {
                         str += cnt;
+                        cnt = 1;
                     }
                     str += s1;
                     s1 = s2;
-                    cnt = 1;
                 }
             }
             
