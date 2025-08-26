@@ -83,7 +83,8 @@ public class Main {
                     }
                 }
     
-                idx = (idx + 1) % 9;
+                idx++;
+                if(idx == 9) idx = 0;
             }
         }
     
