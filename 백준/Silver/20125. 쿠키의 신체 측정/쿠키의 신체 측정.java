@@ -27,17 +27,21 @@ class Main {
         int[] backPos = new int[2];
         int llLen = 0;
         int rlLen = 0;
+        StringBuilder sb = new StringBuilder();
+        sb.append(heartPos[0] + 1).append(' ').append(heartPos[1] + 1).append('\n');
 
         for(int i = heartPos[1] - 1; i >= 0; i--) {
             if(!arr[heartPos[0]][i].equals("*")) break;
             lhLen += 1;
         }
-
+        sb.append(lhLen).append(' ');
+        
         for(int i = heartPos[1] + 1; i < N; i++) {
             if(!arr[heartPos[0]][i].equals("*")) break;
             rhLen += 1;
         }
-
+        sb.append(rhLen).append(' ');
+        
         for(int i = heartPos[0] + 1; i < N; i++) {
             if(!arr[i][heartPos[1]].equals("*")) {
                 backPos[0] = i - 1;
@@ -46,7 +50,8 @@ class Main {
             }
             backLen += 1;
         }
-
+        sb.append(backLen).append(' ');
+        
         int llIdx = backPos[1] - 1;
         int rlIdx = backPos[1] + 1;
         for(int i = backPos[0] + 1; i < N; i++) {
@@ -55,8 +60,9 @@ class Main {
             if(arr[i][llIdx].equals("*")) llLen += 1;
             if(arr[i][rlIdx].equals("*")) rlLen += 1;
         }
-
-        System.out.println(heartPos[0] + 1 + " " + (heartPos[1] + 1));
-        System.out.println(lhLen+ " " + rhLen + " " + backLen + " " + llLen + " " + rlLen);        
+        sb.append(llLen).append(' ');
+        sb.append(rlLen);
+        
+       System.out.println(sb);        
     }
 }
